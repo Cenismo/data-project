@@ -4,9 +4,9 @@ pablo_data:
       dbname: "{{ env_var('DB_NAME_PROD') }}"
       host: "{{ env_var('DB_HOST_PROD') }}"
       pass: "{{ env_var('DB_PASS_PROD') }}"
-      port: "{{ env_var('DB_PORT_PROD') }}"
+      port: 5432  # Use o valor diretamente aqui
       schema: "{{ env_var('DB_SCHEMA_PROD') }}"
-      threads: "{{ env_var('DB_THREADS_PROD') }}"
+      threads: 1  # Use o valor diretamente aqui
       type: postgres
       user: "{{ env_var('DB_USER_PROD') }}"
   target: dev
