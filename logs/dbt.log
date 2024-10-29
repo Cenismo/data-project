@@ -1,0 +1,117 @@
+[0m10:47:24.526368 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A95D2F93D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A95F2525E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A95F2524C0>]}
+
+
+============================== 10:47:24.526368 | 9404f81e-943e-4b36-80d7-60de87e81bb2 ==============================
+[0m10:47:24.526368 [info ] [MainThread]: Running with dbt=1.9.0-b2
+[0m10:47:24.526368 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'profiles_dir': '../', 'log_path': 'logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt init', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m10:48:13.904276 [debug] [MainThread]: Starter project path: c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\include\starter_project
+[0m10:48:13.998036 [info ] [MainThread]: 
+Your new dbt project "datapablo" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m10:48:14.000035 [info ] [MainThread]: Setting up your profile.
+[0m10:48:41.227277 [error] [MainThread]: Encountered an error:
+
+[0m10:48:41.242864 [error] [MainThread]: Traceback (most recent call last):
+  File "c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\cli\requires.py", line 153, in wrapper
+    result, success = func(*args, **kwargs)
+  File "c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\cli\requires.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\cli\main.py", line 477, in init
+    results = task.run()
+  File "c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\task\init.py", line 346, in run
+    self.setup_profile(profile_name)
+  File "c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\task\init.py", line 262, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+  File "c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\task\init.py", line 179, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\task\init.py", line 163, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+  File "c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\task\init.py", line 129, in generate_target_from_input
+    target[key] = click.prompt(
+  File "c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\click\termui.py", line 164, in prompt
+    value = prompt_func(prompt)
+  File "c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\click\termui.py", line 147, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m10:48:41.242864 [debug] [MainThread]: Command `dbt init` failed at 10:48:41.242864 after 76.80 seconds
+[0m10:48:41.242864 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A95D2F93D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A95F209280>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A95C6B0190>]}
+[0m10:48:41.242864 [debug] [MainThread]: Flushing usage events
+[0m10:48:41.962159 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:49:02.370652 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F45D7193D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F45F6725E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F45F6724C0>]}
+
+
+============================== 10:49:02.370652 | e68e3399-a1be-47ae-b7f1-7e16bf6a6ccd ==============================
+[0m10:49:02.370652 [info ] [MainThread]: Running with dbt=1.9.0-b2
+[0m10:49:02.370652 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '../', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt init', 'send_anonymous_usage_stats': 'True'}
+[0m10:49:08.357246 [info ] [MainThread]: A project called datapablo already exists here.
+[0m10:49:08.357246 [debug] [MainThread]: Command `dbt init` succeeded at 10:49:08.357246 after 6.09 seconds
+[0m10:49:08.357246 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F45D7193D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F45F672550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F45F629280>]}
+[0m10:49:08.357246 [debug] [MainThread]: Flushing usage events
+[0m10:49:08.999248 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:49:22.632064 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E6F70093D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E6F8F615E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E6F8F614C0>]}
+
+
+============================== 10:49:22.639075 | c6776068-e617-4973-8c94-82a9112a1525 ==============================
+[0m10:49:22.639075 [info ] [MainThread]: Running with dbt=1.9.0-b2
+[0m10:49:22.640655 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '../', 'log_path': 'logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt init', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m10:49:29.997748 [debug] [MainThread]: Starter project path: c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\include\starter_project
+[0m10:49:30.045834 [info ] [MainThread]: 
+Your new dbt project "datawpablo" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m10:49:30.049399 [info ] [MainThread]: Setting up your profile.
+[0m10:55:32.380449 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C34BB39460>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C34DA92670>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C34DA92550>]}
+
+
+============================== 10:55:32.396072 | 5f2d8598-c9aa-4d3f-b0c9-5dbb1fa362c0 ==============================
+[0m10:55:32.396072 [info ] [MainThread]: Running with dbt=1.9.0-b2
+[0m10:55:32.396072 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '../', 'debug': 'False', 'fail_fast': 'False', 'log_path': 'logs', 'warn_error': 'None', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt init', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m10:55:39.496300 [debug] [MainThread]: Starter project path: c:\users\pablo\onedrive\documents\data-project\.venv\lib\site-packages\dbt\include\starter_project
+[0m10:55:39.549588 [info ] [MainThread]: 
+Your new dbt project "pablo_data" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m10:55:39.549588 [info ] [MainThread]: Setting up your profile.
+[0m13:45:51.654560 [info ] [MainThread]: Profile pablo_data written to ..\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m13:45:51.706924 [debug] [MainThread]: Command `dbt init` succeeded at 13:45:51.698145 after 10219.45 seconds
+[0m13:45:51.712075 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C34BB39460>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C34DA92820>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C34AEF5760>]}
+[0m13:45:51.724424 [debug] [MainThread]: Flushing usage events
+[0m13:45:52.845903 [debug] [MainThread]: An error was encountered while trying to flush usage events
