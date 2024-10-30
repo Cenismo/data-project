@@ -1,68 +1,50 @@
--- models/datamart/dm_commodities.sql
-
-with commodities as (
-    select
-        data,
-        simbolo,
-        valor_fechamento
-    from 
-        {{ ref ('stg_commodities') }}
-),
-
-movimentacao as (
-    select
-        data,
-        simbolo,
-        acao,
-        quantidade
-    from 
-        {{ ref ('stg_movimentacao_commodities') }}
-),
-
-joined as (
-    select
-        c.data,
-        c.simbolo,
-        c.valor_fechamento,
-        m.acao,
-        m.quantidade,
-        (m.quantidade * c.valor_fechamento) as valor,
-        case
-            when m.acao = 'sell' then (m.quantidade * c.valor_fechamento)
-            else -(m.quantidade * c.valor_fechamento)
-        end as ganho
-    from
-        commodities c
-    inner join
-        movimentacao m
-    on
-        c.data = m.data
-        and c.simbolo = m.simbolo
-),
-
-last_day as (
-    select
-        max(data) as max_date
-    from
-        joined
-),
-
-filtered as (
-    select
-        *
-    from
-        joined
-    where
-        data = (select max_date from last_day)
-)
-
-select
+WITH movimentacao AS (
+  SELECT
     data,
+    simbolo,
+    acao,
+    quantidade
+  FROM
+    {{ ref('stg_movimentacao_commodities') }}
+),
+preco_aproximado AS (
+  SELECT
+    m.*,
+    c.data AS data_commodity,
+    c.valor_fechamento
+  FROM
+    movimentacao m
+  JOIN LATERAL (
+    SELECT
+      c1.data,
+      c1.valor_fechamento
+    FROM
+      {{ ref('stg_commodities') }} c1
+    WHERE
+      LOWER(TRIM(c1.simbolo)) = LOWER(TRIM(m.simbolo))
+      AND c1.data >= m.data
+    ORDER BY
+      c1.data ASC
+    LIMIT 1
+  ) c ON TRUE
+),
+calculado AS (
+  SELECT
+    data_commodity AS data,
     simbolo,
     valor_fechamento,
     acao,
     quantidade,
-    valor,
-    ganho
-from
-    filtered
+    (quantidade * valor_fechamento) AS valor,
+    CASE
+      WHEN acao = 'sell' THEN (quantidade * valor_fechamento)
+      WHEN acao = 'buy' THEN -(quantidade * valor_fechamento)
+      ELSE 0
+    END AS ganho
+  FROM
+    preco_aproximado
+)
+SELECT
+  *
+FROM
+  calculado
