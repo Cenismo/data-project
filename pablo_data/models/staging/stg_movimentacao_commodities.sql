@@ -1,4 +1,3 @@
-
 -- models/staging/stg_movimentacao_commodities.sql
 
 with source as (
