@@ -1,5 +1,6 @@
 # data-project
-'''mermaid
+
+```mermaid
 graph TD;
     A[Início] --> B[Buscar Dados de Commodities]
     B --> C[Consolidar Dados de Todas as Commodities]
@@ -31,4 +32,3 @@ graph TD;
     C1 --> C2
     C2 --> D1
     D1 --> E
-'''
