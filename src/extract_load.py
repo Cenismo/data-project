@@ -1,7 +1,7 @@
 # Imports
 import yfinance as yf
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
 import os
 
@@ -35,7 +35,23 @@ def buscar_todos_dados_commodities():
     return pd.concat(todos_dados)
 
 def salvar_no_postgres(df, schema='public'):
+    # Remover views e tabela antes de recriar
+    with engine.connect() as conn:
+        # Remover as views dependentes
+        conn.execute(text("DROP VIEW IF EXISTS public.dm_commodities"))
+        conn.execute(text("DROP VIEW IF EXISTS public.stg_commodities"))
+        
+        # Remover a tabela com CASCADE
+        conn.execute(text("DROP TABLE IF EXISTS public.commodities CASCADE"))
+
+    # Inserir a nova tabela
     df.to_sql('commodities', engine, if_exists='replace', index=True, index_label='Date', schema=schema)
+
+    # Recriar as views
+    with engine.connect() as conn:
+        # Exemplo das definições das views (substitua com as definições reais das views)
+        conn.execute(text("CREATE VIEW public.stg_commodities AS SELECT * FROM public.commodities"))
+        conn.execute(text("CREATE VIEW public.dm_commodities AS SELECT * FROM public.stg_commodities"))
 
 if __name__ == "__main__":
     dados_concatenados = buscar_todos_dados_commodities()
