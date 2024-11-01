@@ -56,10 +56,10 @@ def salvar_no_postgres(df, schema='public'):
     # Inserir dados na tabela recém-criada sem substituir
     df.to_sql('commodities', engine, if_exists='append', index=True, index_label='Date', schema=schema)
 
-    # Recriar as views depois de substituir a tabela
+    # Recriar as views depois de substituir a tabela com CREATE OR REPLACE
     with engine.connect() as conn:
-        conn.execute(text("CREATE VIEW public.stg_commodities AS SELECT * FROM public.commodities"))
-        conn.execute(text("CREATE VIEW public.dm_commodities AS SELECT * FROM public.stg_commodities"))
+        conn.execute(text("CREATE OR REPLACE VIEW public.stg_commodities AS SELECT * FROM public.commodities"))
+        conn.execute(text("CREATE OR REPLACE VIEW public.dm_commodities AS SELECT * FROM public.stg_commodities"))
 
 if __name__ == "__main__":
     dados_concatenados = buscar_todos_dados_commodities()
