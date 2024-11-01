@@ -35,12 +35,13 @@ def buscar_todos_dados_commodities():
     return pd.concat(todos_dados)
 
 def salvar_no_postgres(df, schema='public'):
+    # Conexão com o banco para remover as views e a tabela antes de recriar
     with engine.connect() as conn:
-        # Remover as views dependentes
+        # Remover as views dependentes com CASCADE
         conn.execute(text("DROP VIEW IF EXISTS public.dm_commodities CASCADE"))
         conn.execute(text("DROP VIEW IF EXISTS public.stg_commodities CASCADE"))
         
-        # Remover a tabela commodities
+        # Remover a tabela commodities com CASCADE
         conn.execute(text("DROP TABLE IF EXISTS public.commodities CASCADE"))
         
         # Criar a tabela commodities manualmente
