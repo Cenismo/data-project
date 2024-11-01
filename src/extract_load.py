@@ -35,21 +35,21 @@ def buscar_todos_dados_commodities():
     return pd.concat(todos_dados)
 
 def salvar_no_postgres(df, schema='public'):
-    # Remover views e tabela antes de recriar
+    # Conexão com o banco para remover as views e a tabela antes de recriar
     with engine.connect() as conn:
         # Remover as views dependentes
         conn.execute(text("DROP VIEW IF EXISTS public.dm_commodities"))
         conn.execute(text("DROP VIEW IF EXISTS public.stg_commodities"))
         
-        # Remover a tabela com CASCADE
+        # Remover a tabela commodities com CASCADE
         conn.execute(text("DROP TABLE IF EXISTS public.commodities CASCADE"))
 
-    # Inserir a nova tabela
+    # Inserir a nova tabela commodities
     df.to_sql('commodities', engine, if_exists='replace', index=True, index_label='Date', schema=schema)
 
-    # Recriar as views
+    # Recriar as views depois de substituir a tabela
     with engine.connect() as conn:
-        # Exemplo das definições das views (substitua com as definições reais das views)
+        # Exemplo das definições das views (substitua pelos comandos SQL reais)
         conn.execute(text("CREATE VIEW public.stg_commodities AS SELECT * FROM public.commodities"))
         conn.execute(text("CREATE VIEW public.dm_commodities AS SELECT * FROM public.stg_commodities"))
 
