@@ -15,7 +15,7 @@ DB_HOST = os.getenv('DB_HOST_PROD')
 DB_PORT = os.getenv('DB_PORT_PROD')
 DB_NAME = os.getenv('DB_NAME_PROD')
 DB_USER = os.getenv('DB_USER_PROD')
-DB_PASS = os.getenv('DB_PASS_PROD')
+DB_PASS = os.getenv('DB_USER_PROD')
 DB_SCHEMA = os.getenv('DB_SCHEMA_PROD')
 
 DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
@@ -38,8 +38,8 @@ def salvar_no_postgres(df, schema='public'):
     # Conexão com o banco para remover as views e a tabela antes de recriar
     with engine.connect() as conn:
         # Remover as views dependentes
-        conn.execute(text("DROP VIEW IF EXISTS public.dm_commodities"))
-        conn.execute(text("DROP VIEW IF EXISTS public.stg_commodities"))
+        conn.execute(text("DROP VIEW IF EXISTS public.dm_commodities CASCADE"))
+        conn.execute(text("DROP VIEW IF EXISTS public.stg_commodities CASCADE"))
         
         # Remover a tabela commodities com CASCADE
         conn.execute(text("DROP TABLE IF EXISTS public.commodities CASCADE"))
